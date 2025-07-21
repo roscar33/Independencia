@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>20 de Julio - Independencia de Colombia</title>
+    <style>
+        /* Estilos CSS para crear una experiencia visual atractiva y educativa */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', normal, sans-serif;
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FF6347);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #8B4513;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .section {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-image {
+            width: 100%;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .button {
+            background: linear-gradient(45deg, #32CD32, #228B22);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+            font-family: inherit;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .question-card {
+            background: #F0F8FF;
+            border: 3px solid #4169E1;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .question-card h3 {
+            color: #4169E1;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #87CEEB;
+            border-radius: 10px;
+            font-size: 1em;
+            margin-top: 10px;
+            font-family: inherit;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #4169E1;
+            box-shadow: 0 0 10px rgba(65,105,225,0.3);
+        }
+
+        .video-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .glossary-item {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .glossary-item strong {
+            color: #8B4513;
+            font-size: 1.1em;
+        }
+
+        .true-false-grid {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tf-question {
+            background: #F5F5DC;
+            border: 2px solid #CD853F;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .tf-options {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .tf-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .tf-option input[type="radio"] {
+            transform: scale(1.5);
+        }
+
+        .wordsearch-container {
+            background: #E6E6FA;
+            border: 3px solid #9370DB;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .wordsearch-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 35px);
+            gap: 2px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .wordsearch-cell {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #9370DB;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .wordsearch-cell:hover {
+            background: #DDA0DD;
+        }
+
+        .wordsearch-cell.selected {
+            background: #9370DB;
+            color: white;
+        }
+
+        .wordsearch-cell.found {
+            background: #32CD32;
+            color: white;
+        }
+
+        .words-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .word-item {
+            background: #DDA0DD;
+            color: #4B0082;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .word-item.found {
+            background: #32CD32;
+            color: white;
+            text-decoration: line-through;
+        }
+
+        .navigation {
+            text-align: center;
+            padding: 20px;
+            background: #F5F5F5;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #E0E0E0;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #32CD32, #228B22);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .student-info {
+            background: #F0F8FF;
+            border: 2px solid #4169E1;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .feedback {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .feedback.success {
+            background: #90EE90;
+            color: #006400;
+            border: 2px solid #32CD32;
+        }
+
+        .feedback.error {
+            background: #FFB6C1;
+            color: #8B0000;
+            border: 2px solid #FF69B4;
+        }
+
+        .instructions {
+            background: #FFFACD;
+            border: 2px solid #DAA520;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .instructions h4 {
+            color: #8B4513;
+            margin-bottom: 10px;
+        }
+    </style>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇨🇴 20 de Julio - Independencia de Colombia 🇨🇴</h1>
+            <p>Un viaje interactivo por nuestra historia patria</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- Sección 1: Información del estudiante -->
+        <div class="section active" id="section1">
+            <div class="student-info">
+                <h2>¡Bienvenidos pequeños historiadores! 📚</h2>
+                <p>Antes de comenzar nuestro viaje por la historia de Colombia, queremos conocerte mejor:</p>
+                
+                <div style="margin: 20px 0;">
+                    <label for="studentName" style="font-weight: bold; color: #4169E1;">Tu nombre completo:</label>
+                    <input type="text" id="studentName" class="input-field" placeholder="Escribe tu nombre aquí" />
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <label for="studentGrade" style="font-weight: bold; color: #4169E1;">Tu grado:</label>
+                    <select id="studentGrade" class="input-field">
+                        <option value="">Selecciona tu grado</option>
+                        <option value="4">Cuarto grado</option>
+                        <option value="5">Quinto grado</option>
+                    </select>
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <label for="schoolName" style="font-weight: bold; color: #4169E1;">Nombre de tu escuela:</label>
+                    <input type="text" id="schoolName" class="input-field" placeholder="Escribe el nombre de tu escuela" />
+                </div>
+                
+                <button class="button" onclick="startJourney()">¡Comenzar el viaje histórico! 🚀</button>
+            </div>
+        </div>
+
+        <!-- Sección 2: Imagen inicial -->
+        <div class="section" id="section2">
+            <h2 style="text-align: center; color: #8B4513; margin-bottom: 20px;">
+                ¡Celebremos nuestra independencia! 🎉
+            </h2>
+            
+            <div class="hero-image">
+                <svg width="600" height="400" viewBox="0 0 600 400" style="max-width: 100%; height: auto;">
+                    <!-- Fondo con colores patrios -->
+                    <rect width="600" height="133" fill="#FFD700"/>
+                    <rect y="133" width="600" height="134" fill="#0000FF"/>
+                    <rect y="267" width="600" height="133" fill="#FF0000"/>
+                    
+                    <!-- Niños celebrando -->
+                    <g id="ninos">
+                        <!-- Niño 1 -->
+                        <circle cx="150" cy="250" r="25" fill="#FDBCB4"/>
+                        <circle cx="150" cy="240" r="8" fill="#8B4513"/>
+                        <rect x="140" y="275" width="20" height="30" fill="#FF6B6B"/>
+                        <rect x="135" y="305" width="10" height="20" fill="#4ECDC4"/>
+                        <rect x="155" y="305" width="10" height="20" fill="#4ECDC4"/>
+                        <rect x="130" y="260" width="40" height="15" fill="#45B7D1"/>
+                        
+                        <!-- Niña 1 -->
+                        <circle cx="250" cy="250" r="25" fill="#FDBCB4"/>
+                        <circle cx="250" cy="240" r="8" fill="#D2691E"/>
+                        <rect x="240" y="275" width="20" height="30" fill="#FF69B4"/>
+                        <rect x="235" y="305" width="10" height="20" fill="#32CD32"/>
+                        <rect x="255" y="305" width="10" height="20" fill="#32CD32"/>
+                        <rect x="230" y="260" width="40" height="15" fill="#FFB347"/>
+                        
+                        <!-- Niño 2 -->
+                        <circle cx="350" cy="250" r="25" fill="#FDBCB4"/>
+                        <circle cx="350" cy="240" r="8" fill="#000"/>
+                        <rect x="340" y="275" width="20" height="30" fill="#87CEEB"/>
+                        <rect x="335" y="305" width="10" height="20" fill="#8B4513"/>
+                        <rect x="355" y="305" width="10" height="20" fill="#8B4513"/>
+                        <rect x="330" y="260" width="40" height="15" fill="#98FB98"/>
+                        
+                        <!-- Niña 2 -->
+                        <circle cx="450" cy="250" r="25" fill="#FDBCB4"/>
+                        <circle cx="450" cy="240" r="8" fill="#FF6347"/>
+                        <rect x="440" y="275" width="20" height="30" fill="#DDA0DD"/>
+                        <rect x="435" y="305" width="10" height="20" fill="#FFD700"/>
+                        <rect x="455" y="305" width="10" height="20" fill="#FFD700"/>
+                        <rect x="430" y="260" width="40" height="15" fill="#F0E68C"/>
+                    </g>
+                    
+                    <!-- Banderas pequeñas -->
+                    <g id="banderas">
+                        <rect x="180" y="200" width="30" height="20" fill="#FFD700"/>
+                        <rect x="180" y="207" width="30" height="6" fill="#0000FF"/>
+                        <rect x="180" y="213" width="30" height="7" fill="#FF0000"/>
+                        <line x1="175" y1="200" x2="175" y2="230" stroke="#8B4513" stroke-width="3"/>
+                        
+                        <rect x="380" y="200" width="30" height="20" fill="#FFD700"/>
+                        <rect x="380" y="207" width="30" height="6" fill="#0000FF"/>
+                        <rect x="380" y="213" width="30" height="7" fill="#FF0000"/>
+                        <line x1="375" y1="200" x2="375" y2="230" stroke="#8B4513" stroke-width="3"/>
+                    </g>
+                    
+                    <!-- Texto festivo -->
+                    <text x="300" y="150" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="#FFFFFF">¡VIVA COLOMBIA!</text>
+                    <text x="300" y="370" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF">20 de Julio - Día de la Independencia</text>
+                </svg>
+            </div>
+            
+            <div class="instructions">
+                <h4>💡 ¿Sabías que...?</h4>
+                <p>El 20 de julio de 1810 fue el día en que los colombianos dijeron "¡Ya no queremos depender de España!" y comenzaron su lucha por la libertad. ¡Es como cuando decides que ya eres lo suficientemente grande para hacer ciertas cosas por ti mismo!</p>
+            </div>
+            
+            <div class="navigation">
+                <button class="button" onclick="nextSection()">Continuar al video 📹</button>
+            </div>
+        </div>
+
+        <!-- Sección 3: Video -->
+        <div class="section" id="section3">
+            <h2 style="text-align: center; color: #8B4513; margin-bottom: 20px;">
+                📹 Video: La Independencia de Colombia
+            </h2>
+            
+            <div class="instructions">
+                <h4>🎯 Instrucciones importantes:</h4>
+                <p>Mira atentamente el siguiente video sobre la Independencia de Colombia. Después tendrás que responder algunas preguntas sobre lo que aprendiste. ¡Presta mucha atención a los personajes, fechas y eventos importantes!</p>
+            </div>
+            
+            <div class="video-container">
+                <iframe width="260" height="315" 
+                        src="https://www.youtube.com/embed/4rUQAwEofjI" 
+                        title="Independencia de Colombia" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+            
+            <div class="navigation">
+                <button class="button" onclick="prevSection()">⬅️ Regresar</button>
+                <button class="button" onclick="nextSection()">Continuar a las preguntas 📝</button>
+            </div>
+        </div>
+
+        <!-- Sección 4: Preguntas de comprensión -->
+        <div class="section" id="section4">
+            <h2 style="text-align: center; color: #8B4513; margin-bottom: 20px;">
+                📝 Preguntas de comprensión del video
+            </h2>
+            
+            <div class="instructions">
+                <h4>🤔 ¡Hora de demostrar lo que aprendiste!</h4>
+                <p>Responde las siguientes preguntas basándote en el video que acabas de ver. Piensa bien antes de escribir tu respuesta y trata de explicar con tus propias palabras.</p>
+            </div>
+            
+            <div class="question-card">
+                <h3>Pregunta 1:</h3>
+                <p>¿Qué evento específico ocurrió el 20 de julio de 1810 en Santafé de Bogotá que marcó el inicio del proceso independentista colombiano?</p>
+                <textarea id="q1" class="input-field" rows="4" placeholder="Escribe tu respuesta aquí..."></textarea>
+            </div>
+            
+            <div class="question-card">
+                <h3>Pregunta 2:</h3>
+                <p>¿Quiénes fueron los principales líderes criollos que participaron en el movimiento independentista y qué papel cumplieron en esta importante fecha?</p>
+                <textarea id="q2" class="input-field" rows="4" placeholder="Escribe tu respuesta aquí..."></textarea>
+            </div>
+            
+            <div class="question-card">
+                <h3>Pregunta 3:</h3>
+                <p>¿Por qué los criollos estaban inconformes con el gobierno español y qué razones los motivaron a buscar la independencia de Colombia?</p>
+                <textarea id="q3" class="input-field" rows="4" placeholder="Escribe tu respuesta aquí..."></textarea>
+            </div>
+            
+            <div class="question-card">
+                <h3>Pregunta 4:</h3>
+                <p>¿Cómo crees que la independencia de Colombia cambió la vida de las personas de esa época y qué significó para el futuro del país?</p>
+                <textarea id="q4" class="input-field" rows="4" placeholder="Escribe tu respuesta aquí..."></textarea>
+            </div>
+            
+            <div class="question-card">
+                <h3>Pregunta 5:</h3>
+                <p>¿Qué valores y principios de la independencia consideras que son importantes para los colombianos de hoy en día?</p>
+                <textarea id="q5" class="input-field" rows="4" placeholder="Escribe tu respuesta aquí..."></textarea>
+            </div>
+            
+            <div class="navigation">
+                <button class="button" onclick="prevSection()">⬅️ Regresar</button>
+                <button class="button" onclick="saveAndNext()">Guardar respuestas y continuar 💾</button>
+            </div>
+        </div>
+
+        <!-- Sección 5: Glosario -->
+        <div class="section" id="section5">
+            <h2 style="text-align: center; color: #8B4513; margin-bottom: 20px;">
+                📖 Glosario de la Independencia
+            </h2>
+            
+            <div class="instructions">
+                <h4>📚 ¡Conviértete en un experto!</h4>
+                <p>Aquí tienes palabras importantes relacionadas con la independencia. Lee cada palabra y trata de escribir con tus propias palabras qué significa. ¡Puedes usar lo que aprendiste del video!</p>
+            </div>
+            
+            <div class="glossary-grid">
+                <div class="glossary-item">
+                    <strong>Independencia:</strong>
+                    <textarea class="input-field" rows="3" placeholder="¿Qué significa independencia?"></textarea>
+                </div>
+                
+                <div class="glossary-item">
+                    <strong>Criollos:</strong>
+                    <textarea class="input-field" rows="3" placeholder="¿Quiénes eran los criollos?"></textarea>
+                </div>
+                
+                <div class="glossary-item">
+                    <strong>Virreinato:</strong>
+                    <textarea class="input-field" rows="3" placeholder="¿Qué era el virreinato?"></textarea>
+                </div>
+                
+                <div class="glossary-item">
+                    <strong>Revolución:</strong>
+                    <textarea class="input-field" rows="3" placeholder="¿Qué es una revolución?"></textarea>
+                </div>
+                
+                <div class="glossary-item">
+                    <strong>Patriota:</strong>
+                    <textarea class="input-field" rows="3" placeholder="¿Qué es ser patriota?"></textarea>
+                </div>
+                
+                <div class="glossary-item">
+                    <strong>Libertad:</strong>
+                    <textarea class="input-field" rows="3" placeholder="¿Qué significa libertad?"></textarea>
+                </div>
+                
+                <div class="glossary-item">
+                    <strong>Soberanía:</strong>
+                    <textarea class="input-field" rows="3" placeholder="¿Qué es la soberanía?"></textarea>
+                </div>
+                
+                <div class="glossary-item">
+                    <strong>Constitución:</strong>
+                    <textarea class="input-field" rows="3" placeholder="¿Qué es una constitución?"></textarea>
+                </div>
+                
+                <div class="glossary-item">
+                    <strong>Emancipación:</strong>
+                    <textarea class="input-field" rows="3" placeholder="¿Qué significa emancipación?"></textarea>
+                </div>
+                
+                <div class="glossary-item">
+                    <strong>República:</strong>
+                    <textarea class="input-field" rows="3" placeholder="¿Qué es una república?"></textarea>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="button" onclick="prevSection()">⬅️ Regresar</button>
+                <button class="button" onclick="nextSection()">Continuar a verdadero o falso ✓</button>
+            </div>
+        </div>
+
+        <!-- Sección 6: Verdadero o Falso -->
+        <div class="section" id="section6">
+            <h2 style="text-align: center; color: #8B4513; margin-bottom: 20px;">
+                ✓❌ Verdadero o Falso
+            </h2>
+            
+            <div class="instructions">
+                <h4>🎯 ¡Pon a prueba tus conocimientos!</h4>
+                <p>Lee cada afirmación cuidadosamente y decide si es verdadera o falsa. Recuerda lo que aprendiste en el video y piensa bien antes de responder.</p>
+            </div>
+            
+            <div class="true-false-grid">
+                <div class="tf-question">
+                    <p><strong>1.</strong> La independencia de Colombia se celebra el 20 de julio porque ese día se firmó la declaración de independencia definitiva del país.</p>
+                    <div class="tf-options">
+                        <div class="tf-option">
+                            <input type="radio" name="tf1" value="true" id="tf1_true" />
+                            <label for="tf1_true">✓ Verdadero</label>
+                        </div>
+                        <div class="tf-option">
+                            <input type="radio" name="tf1" value="false" id="tf1_false" />
+                            <label for="tf1_false">❌ Falso</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tf-question">
+                    <p><strong>2.</strong> Los criollos eran personas nacidas en América pero descendientes de españoles, y tenían menos derechos que los peninsulares.</p>
+                    <div class="tf-options">
+                        <div class="tf-option">
+                            <input type="radio" name="tf2" value="true" id="tf2_true" />
+                            <label for="tf2_true">✓ Verdadero</label>
+                        </div>
+                        <div class="tf-option">
+                            <input type="radio" name="tf2" value="false" id="tf2_false" />
+                            <label for="tf2_false">❌ Falso</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tf-question">
+                    <p><strong>3.</strong> El florero de Llorente fue un evento que se usó como pretexto para iniciar los disturbios del 20 de julio de 1810.</p>
+                    <div class="tf-options">
+                        <div class="tf-option">
+                            <input type="radio" name="tf3" value="true" id="tf3_true" />
+                            <label for="tf3_true">✓ Verdadero</label>
+                        </div>
+                        <div class="tf-option">
+                            <input type="radio" name="tf3" value="false" id="tf3_false" />
+                            <label for="tf3_false">❌ Falso</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tf-question">
+                    <p><strong>4.</strong> Después del 20 de julio de 1810, Colombia logró inmediatamente su independencia total y nunca más tuvo conflictos con España.</p>
+                    <div class="tf-options">
+                        <div class="tf-option">
+                            <input type="radio" name="tf4" value="true" id="tf4_true" />
+                            <label for="tf4_true">✓ Verdadero</label>
+                        </div>
+                        <div class="tf-option">
+                            <input type="radio" name="tf4" value="false" id="tf4_false" />
+                            <label for="tf4_false">❌ Falso</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tf-question">
+                    <p><strong>5.</strong> La independencia de Colombia fue importante porque permitió que los colombianos pudieran gobernarse a sí mismos y tomar sus propias decisiones.</p>
+                    <div class="tf-options">
+                        <div class="tf-option">
+                            <input type="radio" name="tf5" value="true" id="tf5_true" />
+                            <label for="tf5_true">✓ Verdadero</label>
+                        </div>
+                        <div class="tf-option">
+                            <input type="radio" name="tf5" value="false" id="tf5_false" />
+                            <label for="tf5_false">❌ Falso</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="button" onclick="prevSection()">⬅️ Regresar</button>
+                <button class="button" onclick="checkTrueFalse()">Verificar respuestas 🔍</button>
+                <button class="button" onclick="nextSection()">Continuar a la sopa de letras 🔤</button>
+            </div>
+        </div>
+      <!-- Sección 7: Sopa de letras -->
+        <div class="section" id="section7">
+            <h2 style="text-align: center; color: #8B4513; margin-bottom: 20px;">
+                🔤 Sopa de letras de la Independencia
+            </h2>
+            
+            <div class="instructions">
+                <h4>🕵️ ¡Conviértete en un detective de palabras!</h4>
+                <p>Encuentra las 5 palabras escondidas en la sopa de letras. Las palabras pueden estar escritas de forma horizontal, vertical o diagonal. Haz clic en las letras para seleccionarlas y formar las palabras. ¡Cada palabra que encuentres se marcará en verde!</p>
+            </div>
+            
+            <div class="wordsearch-container">
+                <h3 style="color: #4B0082; margin-bottom: 15px;">Encuentra estas palabras:</h3>
+                <div class="words-list" id="wordsList">
+                    <div class="word-item" data-word="INDEPENDENCIA">INDEPENDENCIA</div>
+                    <div class="word-item" data-word="LIBERTAD">LIBERTAD</div>
+                    <div class="word-item" data-word="PATRIOTA">PATRIOTA</div>
+                    <div class="word-item" data-word="COLOMBIA">COLOMBIA</div>
+                    <div class="word-item" data-word="CRIOLLO">CRIOLLO</div>
+                </div>
+                
+                <div class="wordsearch-grid" id="wordsearchGrid">
+                    <!-- La cuadrícula se generará con JavaScript -->
+                </div>
+                
+                <div id="wordsearchFeedback" class="feedback" style="display: none;"></div>
+                
+                <div style="margin-top: 20px;">
+                    <button class="button" onclick="resetWordsearch()">🔄 Reiniciar sopa de letras</button>
+                    <button class="button" onclick="showHint()">💡 Pista</button>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="button" onclick="prevSection()">⬅️ Regresar</button>
+                <button class="button" onclick="finishActivity()">¡Terminar actividad! 🎉</button>
+            </div>
+        </div>
+
+        <!-- Sección 8: Resumen final -->
+        <div class="section" id="section8">
+            <h2 style="text-align: center; color: #8B4513; margin-bottom: 20px;">
+                🎉 ¡Felicitaciones! Has completado el viaje histórico
+            </h2>
+            
+            <div style="text-align: center; padding: 30px;">
+                <div style="font-size: 4em; margin-bottom: 20px;">🏆</div>
+                <h3 style="color: #32CD32; margin-bottom: 20px;">¡Eres oficialmente un experto en la Independencia de Colombia!</h3>
+                
+                <div style="background: #F0F8FF; border: 3px solid #4169E1; border-radius: 15px; padding: 20px; margin: 20px 0;">
+                    <h4 style="color: #4169E1; margin-bottom: 15px;">📊 Resumen de tu aprendizaje:</h4>
+                    <div id="finalSummary" style="text-align: left; max-width: 500px; margin: 0 auto;">
+                        <!-- El resumen se llenará con JavaScript -->
+                    </div>
+                </div>
+                
+                <div style="background: #FFF8DC; border: 2px solid #DAA520; border-radius: 10px; padding: 15px; margin: 20px 0;">
+                    <h4 style="color: #8B4513; margin-bottom: 10px;">🌟 Lo que has aprendido hoy:</h4>
+                    <p style="text-align: left;">Has descubierto cómo nuestros antepasados lucharon por la libertad, conociste a los héroes que hicieron posible nuestra independencia, y aprendiste palabras importantes de nuestra historia. ¡Ahora puedes contarles a otros sobre este día tan especial para Colombia!</p>
+                </div>
+                
+                <div class="navigation">
+                    <button class="button" onclick="downloadResults()">📥 Descargar mis resultados</button>
+                    <button class="button" onclick="startOver()">🔄 Comenzar de nuevo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuración de Firebase - Reemplaza con tu configuración real
+        const firebaseConfig = {
+  apiKey: "AIzaSyCf1UNx3O2OIKJLiYcN8GfhxE9FviDXGpY",
+  authDomain: "dejulio-d80ba.firebaseapp.com",
+  databaseURL: "https://dejulio-d80ba-default-rtdb.firebaseio.com",
+  projectId: "dejulio-d80ba",
+  storageBucket: "dejulio-d80ba.firebasestorage.app",
+  messagingSenderId: "132118486241",
+  appId: "1:132118486241:web:f0ad91816f8c111f792ba0"
+};
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Variables globales para el manejo del estado
+        let currentSection = 1;
+        let totalSections = 8;
+        let studentData = {};
+        let wordsearchData = {
+            words: ['INDEPENDENCIA', 'LIBERTAD', 'PATRIOTA', 'COLOMBIA', 'CRIOLLO'],
+            found: [],
+            grid: [],
+            selectedCells: []
+        };
+
+        // Función para actualizar la barra de progreso
+        function updateProgress() {
+            const progress = (currentSection / totalSections) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Función para comenzar el viaje después de ingresar datos del estudiante
+        function startJourney() {
+            const name = document.getElementById('studentName').value.trim();
+            const grade = document.getElementById('studentGrade').value;
+            const school = document.getElementById('schoolName').value.trim();
+            
+            if (!name || !grade || !school) {
+                showFeedback('¡Por favor completa toda tu información antes de continuar!', 'error');
+                return;
+            }
+            
+            studentData = { name, grade, school, startTime: new Date().toISOString() };
+            showSection(2);
+        }
+
+        // Función para mostrar retroalimentación al usuario
+        function showFeedback(message, type) {
+            const feedback = document.createElement('div');
+            feedback.className = `feedback ${type}`;
+            feedback.textContent = message;
+            feedback.style.position = 'fixed';
+            feedback.style.top = '20px';
+            feedback.style.left = '50%';
+            feedback.style.transform = 'translateX(-50%)';
+            feedback.style.zIndex = '1000';
+            document.body.appendChild(feedback);
+            
+            setTimeout(() => {
+                document.body.removeChild(feedback);
+            }, 3000);
+        }
+
+        // Función para mostrar una sección específica
+        function showSection(sectionNumber) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Mostrar la sección actual
+            document.getElementById(`section${sectionNumber}`).classList.add('active');
+            currentSection = sectionNumber;
+            updateProgress();
+            
+            // Inicializar contenido específico de la sección
+            if (sectionNumber === 7) {
+                initializeWordsearch();
+            }
+        }
+
+        // Navegación entre secciones
+        function nextSection() {
+            if (currentSection < totalSections) {
+                showSection(currentSection + 1);
+            }
+        }
+
+        function prevSection() {
+            if (currentSection > 1) {
+                showSection(currentSection - 1);
+            }
+        }
+
+        // Función para guardar respuestas y continuar
+        function saveAndNext() {
+            const answers = {
+                q1: document.getElementById('q1').value,
+                q2: document.getElementById('q2').value,
+                q3: document.getElementById('q3').value,
+                q4: document.getElementById('q4').value,
+                q5: document.getElementById('q5').value
+            };
+            
+            // Verificar que al menos algunas preguntas estén respondidas
+            const answeredQuestions = Object.values(answers).filter(answer => answer.trim().length > 0);
+            
+            if (answeredQuestions.length < 3) {
+                showFeedback('¡Intenta responder al menos 3 preguntas antes de continuar!', 'error');
+                return;
+            }
+            
+            studentData.comprehensionAnswers = answers;
+            showFeedback('¡Respuestas guardadas exitosamente!', 'success');
+            
+            // Guardado real en Firebase
+            saveToFirebase('comprehension', answers);
+            
+            setTimeout(() => {
+                nextSection();
+            }, 1500);
+        }
+
+        // Función para verificar respuestas de verdadero o falso
+        function checkTrueFalse() {
+            const correctAnswers = {
+                tf1: 'false', // El 20 de julio fue el inicio, no la declaración definitiva
+                tf2: 'true',  // Los criollos tenían menos derechos que los peninsulares
+                tf3: 'true',  // El florero fue usado como pretexto
+                tf4: 'false', // La independencia fue un proceso largo
+                tf5: 'true'   // La independencia permitió el autogobierno
+            };
+            
+            let score = 0;
+            let results = {};
+            
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="tf${i}"]:checked`);
+                if (selected) {
+                    const isCorrect = selected.value === correctAnswers[`tf${i}`];
+                    results[`tf${i}`] = {
+                        answer: selected.value,
+                        correct: isCorrect
+                    };
+                    if (isCorrect) score++;
+                }
+            }
+            
+            studentData.trueFalseResults = results;
+            studentData.trueFalseScore = score;
+            
+            // Mostrar retroalimentación
+            let message = `¡Obtuviste ${score} de 5 respuestas correctas! `;
+            if (score >= 4) {
+                message += '¡Excelente trabajo! 🌟';
+            } else if (score >= 3) {
+                message += '¡Buen trabajo! 👍';
+            } else {
+                message += '¡Sigue practicando! 💪';
+            }
+            
+            showFeedback(message, score >= 3 ? 'success' : 'error');
+            
+            // Guardar en Firebase
+            saveToFirebase('trueFalse', results);
+        }
+
+        // Función para inicializar la sopa de letras
+        function initializeWordsearch() {
+            createWordsearchGrid();
+            placeWordsInGrid();
+            fillEmptySpaces();
+            renderGrid();
+        }
+
+        // Crear la cuadrícula de la sopa de letras
+        function createWordsearchGrid() {
+            wordsearchData.grid = [];
+            for (let i = 0; i < 10; i++) {
+                wordsearchData.grid[i] = [];
+                for (let j = 0; j < 10; j++) {
+                    wordsearchData.grid[i][j] = '';
+                }
+            }
+        }
+
+        // Colocar palabras en la cuadrícula
+        function placeWordsInGrid() {
+            const words = wordsearchData.words;
+            const positions = [
+                { word: 'INDEPENDENCIA', start: [0, 0], direction: 'horizontal' },
+                { word: 'LIBERTAD', start: [2, 1], direction: 'vertical' },
+                { word: 'PATRIOTA', start: [4, 2], direction: 'horizontal' },
+                { word: 'COLOMBIA', start: [1, 7], direction: 'vertical' },
+                { word: 'CRIOLLO', start: [6, 3], direction: 'diagonal' }
+            ];
+            
+            positions.forEach(pos => {
+                placeWord(pos.word, pos.start, pos.direction);
+            });
+        }
+
+        // Colocar una palabra específica en la cuadrícula
+        function placeWord(word, start, direction) {
+            const [row, col] = start;
+            
+            for (let i = 0; i < word.length; i++) {
+                let newRow = row;
+                let newCol = col;
+                
+                if (direction === 'horizontal') {
+                    newCol = col + i;
+                } else if (direction === 'vertical') {
+                    newRow = row + i;
+                } else if (direction === 'diagonal') {
+                    newRow = row + i;
+                    newCol = col + i;
+                }
+                
+                if (newRow < 10 && newCol < 10) {
+                    wordsearchData.grid[newRow][newCol] = word[i];
+                }
+            }
+        }
+
+        // Llenar espacios vacíos con letras aleatorias
+        function fillEmptySpaces() {
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            
+            for (let i = 0; i < 10; i++) {
+                for (let j = 0; j < 10; j++) {
+                    if (wordsearchData.grid[i][j] === '') {
+                        wordsearchData.grid[i][j] = letters[Math.floor(Math.random() * letters.length)];
+                    }
+                }
+            }
+        }
+
+        // Renderizar la cuadrícula en el HTML
+        function renderGrid() {
+            const gridContainer = document.getElementById('wordsearchGrid');
+            gridContainer.innerHTML = '';
+            
+            for (let i = 0; i < 10; i++) {
+                for (let j = 0; j < 10; j++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'wordsearch-cell';
+                    cell.textContent = wordsearchData.grid[i][j];
+                    cell.dataset.row = i;
+                    cell.dataset.col = j;
+                    cell.addEventListener('click', handleCellClick);
+                    gridContainer.appendChild(cell);
+                }
+            }
+        }
+
+        // Manejar clics en las celdas de la sopa de letras
+        function handleCellClick(event) {
+            const cell = event.target;
+            const row = parseInt(cell.dataset.row);
+            const col = parseInt(cell.dataset.col);
+            
+            if (cell.classList.contains('found')) return;
+            
+            cell.classList.toggle('selected');
+            
+            if (cell.classList.contains('selected')) {
+                wordsearchData.selectedCells.push({ row, col, letter: cell.textContent });
+            } else {
+                wordsearchData.selectedCells = wordsearchData.selectedCells.filter(
+                    selected => !(selected.row === row && selected.col === col)
+                );
+            }
+            
+            checkForWords();
+        }
+
+        // Verificar si se ha formado alguna palabra
+        function checkForWords() {
+            const selectedWord = wordsearchData.selectedCells
+                .sort((a, b) => a.row - b.row || a.col - b.col)
+                .map(cell => cell.letter)
+                .join('');
+            
+            wordsearchData.words.forEach(word => {
+                if (selectedWord === word && !wordsearchData.found.includes(word)) {
+                    foundWord(word);
+                }
+            });
+        }
+
+        // Marcar palabra como encontrada
+        function foundWord(word) {
+            wordsearchData.found.push(word);
+            
+            // Marcar celdas como encontradas
+            wordsearchData.selectedCells.forEach(cell => {
+                const gridCell = document.querySelector(`[data-row="${cell.row}"][data-col="${cell.col}"]`);
+                gridCell.classList.remove('selected');
+                gridCell.classList.add('found');
+            });
+            
+            // Marcar palabra en la lista
+            const wordItem = document.querySelector(`[data-word="${word}"]`);
+            wordItem.classList.add('found');
+            
+            wordsearchData.selectedCells = [];
+            
+            showFeedback(`¡Encontraste la palabra "${word}"!`, 'success');
+            
+            // Verificar si se encontraron todas las palabras
+            if (wordsearchData.found.length === wordsearchData.words.length) {
+                setTimeout(() => {
+                    showFeedback('¡Felicitaciones! ¡Encontraste todas las palabras!', 'success');
+                }, 1000);
+            }
+        }
+
+        // Reiniciar la sopa de letras
+        function resetWordsearch() {
+            wordsearchData.found = [];
+            wordsearchData.selectedCells = [];
+            
+            document.querySelectorAll('.wordsearch-cell').forEach(cell => {
+                cell.classList.remove('selected', 'found');
+            });
+            
+            document.querySelectorAll('.word-item').forEach(item => {
+                item.classList.remove('found');
+            });
+        }
+
+        // Mostrar pista para la sopa de letras
+        function showHint() {
+            const notFound = wordsearchData.words.filter(word => !wordsearchData.found.includes(word));
+            if (notFound.length > 0) {
+                const hintWord = notFound[0];
+                showFeedback(`💡 Pista: Busca la palabra "${hintWord}"`, 'success');
+            }
+        }
+
+        // Finalizar la actividad
+        function finishActivity() {
+            studentData.wordsearchResults = {
+                found: wordsearchData.found,
+                totalWords: wordsearchData.words.length,
+                completionPercentage: (wordsearchData.found.length / wordsearchData.words.length) * 100
+            };
+            
+            studentData.completionTime = new Date().toISOString();
+            
+            // Guardar datos finales
+            saveToFirebase('final', studentData);
+            
+            showSection(8);
+            generateFinalSummary();
+        }
+
+        // Generar resumen final
+        function generateFinalSummary() {
+            const summaryDiv = document.getElementById('finalSummary');
+            const comprehensionAnswered = studentData.comprehensionAnswers ? 
+                Object.values(studentData.comprehensionAnswers).filter(a => a.trim().length > 0).length : 0;
+            const tfScore = studentData.trueFalseScore || 0;
+            const wordsFound = studentData.wordsearchResults ? studentData.wordsearchResults.found.length : 0;
+            
+            summaryDiv.innerHTML = `
+                <p><strong>📝 Preguntas de comprensión:</strong> ${comprehensionAnswered}/5 respondidas</p>
+                <p><strong>✓❌ Verdadero o Falso:</strong> ${tfScore}/5 correctas</p>
+                <p><strong>🔤 Sopa de letras:</strong> ${wordsFound}/5 palabras encontradas</p>
+                <p><strong>🎯 Porcentaje general:</strong> ${Math.round(((comprehensionAnswered + tfScore + wordsFound) / 15) * 100)}%</p>
+                <p><strong>⏰ Fecha de finalización:</strong> ${new Date().toLocaleDateString()}</p>
+            `;
+        }
+
+        // Guardar datos en Firebase
+        function saveToFirebase(section, data) {
+            console.log(`Guardando en Firebase - Sección: ${section}`, data);
+
+            const ref = database.ref(`students/${studentData.name.replace(/\s+/g, '_')}_${Date.now()}/${section}`);
+            ref.set(data).then(() => {
+                console.log('Datos guardados exitosamente');
+                showFeedback('Datos guardados en Firebase correctamente.', 'success');
+            }).catch((error) => {
+                console.error('Error al guardar:', error);
+                showFeedback('Error al guardar datos en Firebase.', 'error');
+            });
+        }
+
+        // Descargar resultados
+        function downloadResults() {
+            const results = {
+                estudiante: studentData.name,
+                grado: studentData.grade,
+                escuela: studentData.school,
+                fecha: new Date().toLocaleDateString(),
+                resultados: {
+                    comprension: studentData.comprehensionAnswers,
+                    verdaderoFalso: studentData.trueFalseResults,
+                    sopaLetras: studentData.wordsearchResults
+                }
+            };
+            
+            const dataStr = JSON.stringify(results, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `Independencia_Colombia_${studentData.name.replace(/\s+/g, '_')}.json`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showFeedback('¡Resultados descargados exitosamente!', 'success');
+        }
+
+        // Comenzar de nuevo
+        function startOver() {
+            if (confirm('¿Estás seguro de que quieres comenzar de nuevo? Se perderán todos tus datos.')) {
+                location.reload();
+            }
+        }
+
+        // Inicializar la aplicación
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            console.log('Cuadernillo de Independencia de Colombia cargado exitosamente');
+        });
+    </script>
+</body>
+</html>
